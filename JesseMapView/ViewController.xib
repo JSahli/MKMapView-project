@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
+            <connections>
+                <outlet property="mapView" destination="gLU-Rs-KT6" id="4sn-6m-bym"/>
+                <outlet property="searchBar" destination="0qd-Nm-hPq" id="miD-rg-PdU"/>
+                <outlet property="view" destination="iN0-l3-epB" id="TZU-fo-YK9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gLU-Rs-KT6">
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Q94-bU-1nj"/>
+                    </connections>
+                </mapView>
+                <searchBar contentMode="redraw" placeholder="Search for Places" translatesAutoresizingMaskIntoConstraints="NO" id="0qd-Nm-hPq">
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="laj-sP-REZ">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="XxT-ds-ERK"/>
+                        <constraint firstAttribute="width" constant="140" id="qwE-e6-aOl"/>
+                    </constraints>
+                </imageView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA4-Ch-kc8">
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GsQ-ar-mMk"/>
+                        <barButtonItem style="plain" id="GUn-Ch-eA7">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="cAS-iG-3jm">
+                                <rect key="frame" x="-38" y="7" width="397" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mapType:" destination="-1" eventType="valueChanged" id="WdM-ej-tX5"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fA4-Ch-kc8" secondAttribute="trailing" id="ETN-Md-6Ns"/>
+                <constraint firstAttribute="trailing" secondItem="gLU-Rs-KT6" secondAttribute="trailing" id="ElJ-2F-wgo"/>
+                <constraint firstItem="fA4-Ch-kc8" firstAttribute="top" secondItem="gLU-Rs-KT6" secondAttribute="bottom" constant="-44" id="GNc-xB-Pg7"/>
+                <constraint firstItem="laj-sP-REZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="KCP-6c-dyu"/>
+                <constraint firstItem="0qd-Nm-hPq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="LOe-eZ-NzK"/>
+                <constraint firstItem="fA4-Ch-kc8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WOp-AC-o7s"/>
+                <constraint firstAttribute="bottom" secondItem="fA4-Ch-kc8" secondAttribute="bottom" id="bFP-Iy-Hl8"/>
+                <constraint firstItem="laj-sP-REZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bXP-b9-z97"/>
+                <constraint firstAttribute="trailing" secondItem="0qd-Nm-hPq" secondAttribute="trailing" constant="8" id="bvu-ck-Aj9"/>
+                <constraint firstItem="gLU-Rs-KT6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="irt-Yw-9ps"/>
+                <constraint firstItem="gLU-Rs-KT6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vzs-2y-Yhi"/>
+                <constraint firstItem="0qd-Nm-hPq" firstAttribute="leading" secondItem="laj-sP-REZ" secondAttribute="trailing" constant="8" id="yk5-dr-geY"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="85.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo.png" width="277" height="49"/>
+    </resources>
+</document>
