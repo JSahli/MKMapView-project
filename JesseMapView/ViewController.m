@@ -20,23 +20,22 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    
     self.searchBar.delegate = self;
-    
     [self prefersStatusBarHidden];
-    
     [NSTimer timerWithTimeInterval:3.0 target:self.mapView selector:@selector(setStartLocation) userInfo:nil repeats:NO];
-//    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(setStartLocation) userInfo:nil repeats:NO];
     [self setStartLocation];
     [self hardCodePins];
-
-   //SEE if this works
 }
+
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
+
+
 
 - (void)setStartLocation {
     
@@ -50,33 +49,8 @@
     region.center = turnToTech;
     region.span = span;
     [self.mapView setRegion:region animated:YES];
-    
-    
-}
-     
-     
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
-
-
-//WHY?
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        _locationManager = [[CLLocationManager alloc]init];
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager setDelegate:self];
-        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    }
-    return self;
-}
 
 
 - (void)hardCodePins {
@@ -89,7 +63,6 @@
     ann.subtitle = @"Mobile Development Bootcamp";
     ann.urlString = @"http://www.turntotech.io";
   
-    
     CLLocationCoordinate2D chopt;
     chopt.longitude = -73.988193;
     chopt.latitude = 40.740721;
@@ -98,7 +71,6 @@
     ann1.subtitle = @"Creative Salad Company";
     ann1.urlString = @"www.http://choptsalad.com/";
 
-  
     CLLocationCoordinate2D hillCountry;
     hillCountry.longitude = -73.990459;
     hillCountry.latitude = 40.744292;
@@ -109,8 +81,9 @@
     
     NSArray *anns = [[NSArray alloc]initWithObjects:ann,ann1,ann2, nil];
     [self.mapView addAnnotations:anns];
-    
 }
+
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
@@ -124,13 +97,10 @@
         [self.mapView removeAnnotations:self.annArray];
         [self.annArray removeAllObjects];
     }
-    
-    // Create the local search to perform the search
     MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:searchRequest];
     [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         if (!error) {
             for (MKMapItem *mapItem in [response mapItems]) {
-//                NSLog(@"Name: %@, Placemark title: %@", [mapItem name], [[mapItem placemark] location]);
                 CLLocationCoordinate2D searhCoord = [[[mapItem placemark] location] coordinate];
                 JSAnnotation *ann = [[JSAnnotation alloc]initWithCoord:searhCoord];
                 ann.title = [mapItem name];
@@ -151,9 +121,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     
     MKPinAnnotationView *view = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"pin"];
-   
-         view.pinTintColor = [UIColor redColor];
-
+    view.pinTintColor = [UIColor redColor];
     view.enabled = YES;
     view.animatesDrop = YES;
     view.canShowCallout = YES;
@@ -163,15 +131,17 @@
     return view;
 }
 
+
+
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     
     JSAnnotation *ann = (JSAnnotation *)view.annotation;
     [self.mapView deselectAnnotation:ann animated:YES];
     self.webVC = [[WebViewController alloc]init];
     self.webVC.annUrl = ann.urlString;
-//    [self.navigationController pushViewController:self.webVC animated:YES];
     [self presentViewController:self.webVC animated:YES completion:nil];
 }
+
 
 
 - (IBAction)mapType:(id)sender {
@@ -192,7 +162,18 @@
         default:
             break;
     }
-    
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 
@@ -208,4 +189,19 @@
     }
     return self;
 }
+
+
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _locationManager = [[CLLocationManager alloc]init];
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager setDelegate:self];
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    }
+    return self;
+}
+
 @end

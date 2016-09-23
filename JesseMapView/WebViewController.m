@@ -34,31 +34,23 @@
     [button setTitle:@"< Back" forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, 80.0, 40.0);
     [self.view addSubview:button];
-[self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController.navigationBar setHidden:NO];
     [button setBackgroundColor:[UIColor whiteColor]];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    
-    //Trying to make a clean looking button to dismiss view controller without navigation controller
-    
-//    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-//   [self.view addSubview:navBar];
-
-//    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];;
-//    [self.view addSubview:toolBar];
-//    [toolBar addSubview:button];
-    
-    
-    
 }
+
+
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
 
+
+
 -(void)goBack {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -66,14 +58,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

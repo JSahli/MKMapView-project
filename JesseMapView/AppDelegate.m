@@ -17,15 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-//    self.viewController = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil]; WHY DOES THE SAMPLE PROJECT DO IT THIS WAY WHEN IT WORKS WITHOUT NIBNAME INIT METHOD?
-    
     self.viewController = [[ViewController alloc]init];
     [self.window makeKeyAndVisible];
-//    self.navigationController = [[UINavigationController alloc]initWithRootViewController:self.viewController];
-//     self.window.rootViewController =  self.navigationController;
     self.window.rootViewController = self.viewController;
     
     return YES;
